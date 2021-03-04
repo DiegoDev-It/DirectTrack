@@ -1,6 +1,7 @@
 # DirectTrack
-A bot created to track Amd RX 6000 and Ryzen 5000 on official amd site.
-A very simple bot who search on selected pages, the buy button, if this one was founded, the bot print which is disponible.
-In future I'd be interested to create a Telegram Bot based on this bot.
+A script created to track AMD GPUs and CPUs on the official website.
+This is a very simple script that searches in selected pages if there's the Buy button (checks aviability), and if there is it'll report it.
+In the future, I'm thinking to create a Telegram bot based on this script.
 
-For execute it, download the .py and download the geckodriver for using it, do not forgot install python libraris: selenium and time.
+# How to run
+First check if you've installed all the dependecies required, then clone this repo and `python3 amdrxbot2`
