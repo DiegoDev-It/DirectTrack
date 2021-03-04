@@ -1,21 +1,20 @@
 from time import sleep
-from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+import requests
 import sys
 import select
 
 is_running = True
+url = "https://www.amd.com/en/direct-buy/5458374100/it"
+headers = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
+button = "btn-shopping-cart"
 
 def check_availability():
-    browser = webdriver.Firefox()  # Instantiate a new Firefox window
-    browser.get("https://www.amd.com/en/direct-buy/5458374100/it")  # go to AMD website
-    try:  # check if there's the Buy button
-        instock = browser.find_element_by_class_name("btn-shopping-cart")
+    # headers are used to fool AMD website
+    r = requests.get(url, headers=headers)
+    if button in r.text:  # check the availability
         print("Available")
-    except(NoSuchElementException):  # if there isn't
+    else:
         print("Not available")
-    
-    browser.quit()  # stop Firefox
 
 while is_running:
     sleep(10)  
