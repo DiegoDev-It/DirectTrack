@@ -10,7 +10,9 @@ while True:
                 print("Disponibile")
         except(NoSuchElementException):
             print("Non disponibile")
+            browser.refresh()
+            time.sleep(2)
             browser.quit()
-            time.sleep(5.5)
+        
 
                 
