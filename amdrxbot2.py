@@ -3,10 +3,14 @@ from threading import Thread
 import requests
 import sys
 import select
+import telepot
+from pprint import pprint
+
 
 # headers are used to fool AMD website
 headers = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
 button = "btn-shopping-cart"  # the shopping button
+bot = telepot.Bot("") #Put in the " " your api key.
 
 class URLS:
     def __init__(self):
@@ -54,7 +58,13 @@ if __name__ == "__main__":
     update = True
     run = True
     urls = URLS()
+    urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "RX-6900XT")
     urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "RX-6800XT")
+    urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "RX-6800")
+    urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "RYZEN 9 5950X")
+    urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "RYZEN 9 5900X")
+    urls.add("https://www.amd.com/en/direct-buy/5450881700/it", "RYZEN 5 5600X")
+
     updater = Updater(urls)
     updater.start()
     while run:
@@ -89,6 +99,6 @@ if __name__ == "__main__":
                         for i in range(len(availables)-1):
                             availables_str = f"{availables_str}, {availables[i+1]}"
                         
-                    print(f"Availables: {availables_str}")  # print all availables
+                    sent = bot.sendMessage(9999999999, availables_str) # replace 9999999999 with your Telegram id
         
         sleep(5)
