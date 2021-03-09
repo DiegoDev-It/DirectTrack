@@ -4,7 +4,6 @@ import requests
 import sys
 import select
 import telepot
-from pprint import pprint
 
 def get_api_key() -> str:
     api_key = ""
