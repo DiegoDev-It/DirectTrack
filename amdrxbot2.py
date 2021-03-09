@@ -6,11 +6,25 @@ import select
 import telepot
 from pprint import pprint
 
+def get_api_key() -> str:
+    api_key = ""
+    with open("api_key.txt", 'r') as file:
+        api_key = file.readline()
+    
+    return api_key
+
+def get_id() -> int:
+    id = ""
+    with open("telegram_id.txt", 'r') as file:
+        id = file.readline()
+    
+    return int(id)
 
 # headers are used to fool AMD website
 headers = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
 button = "btn-shopping-cart"  # the shopping button
-bot = telepot.Bot("") #Put in the " " your api key.
+bot = telepot.Bot(get_api_key())  # put your API key in a file called api_key.txt
+telegram_id = get_id()  # put your ID in a file called telegram_id.txt
 
 class URLS:
     def __init__(self):
@@ -57,6 +71,7 @@ class Updater(Thread):
 if __name__ == "__main__":
     update = True
     run = True
+
     urls = URLS()
     urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "RX-6900XT")
     urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "RX-6800XT")
@@ -67,6 +82,7 @@ if __name__ == "__main__":
 
     updater = Updater(urls)
     updater.start()
+    cached_availables = ["cached"]
     while run:
         # get input non-blocking
         command = select.select([sys.stdin], [], [], 1)[0]
@@ -91,14 +107,16 @@ if __name__ == "__main__":
                 updater.join()
                 urls.check_availability()
                 availables = urls.get_availables()  # get all availables
-                if len(availables) == 0:
-                    print("Nothing is available")
-                else:
-                    availables_str = availables[0]  # instatiate a string with the first available
-                    if len(availables) > 1:  # if there are more than 1 available, add them to the string
-                        for i in range(len(availables)-1):
-                            availables_str = f"{availables_str}, {availables[i+1]}"
-                        
-                    sent = bot.sendMessage(9999999999, availables_str) # replace 9999999999 with your Telegram id
+                if availables != cached_availables:
+                    if len(availables) == 0:
+                        bot.sendMessage(telegram_id, "Nothing is available")
+                    else:
+                        availables_str = availables[0]  # instatiate a string with the first available
+                        if len(availables) > 1:  # if there are more than 1 available, add them to the string
+                            for i in range(len(availables)-1):
+                                availables_str = f"{availables_str}, {availables[i+1]}"
+                            
+                        bot.sendMessage(telegram_id, availables_str)
+                cached_availables = availables
         
         sleep(5)
