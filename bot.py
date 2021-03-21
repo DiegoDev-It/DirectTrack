@@ -76,7 +76,10 @@ if __name__ == "__main__":
     urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6700XT\n Buy here: https://www.amd.com/en/direct-buy/5498471500/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "Available now RYZEN 9 5950X\n Buy here: https://www.amd.com/en/direct-buy/5450881400/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "Available now RYZEN 9 5900X\n Buy here: https://www.amd.com/en/direct-buy/5450881500/it")
+    urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "Available now RYZEN 7 5800X\n Buy here: https://www.amd.com/en/direct-buy/5450881600/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881700/it", "Available now RYZEN 5 5600X\n Buy here: https://www.amd.com/en/direct-buy/5450881700/it")
+    
+  
 
     updater = Updater(urls)
     updater.start()
