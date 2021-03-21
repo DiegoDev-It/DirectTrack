@@ -9,6 +9,8 @@ def get_api_key() -> str:
     api_key = ""
     with open("api_key.txt", 'r') as file:
         api_key = file.readline()
+
+    return api_key
         
 def get_id() -> int:
     id = ""
@@ -16,12 +18,12 @@ def get_id() -> int:
         id = file.readline()
     
     return int(id)
-    
-    return api_key
+
 # headers are used to fool AMD website
 headers = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
 button = "btn-shopping-cart"  # the shopping button
 bot = telepot.Bot(get_api_key())  # put your API key in a file called api_key.txt
+telegram_id = get_id()
 
 class URLS:
     def __init__(self):
@@ -73,13 +75,11 @@ if __name__ == "__main__":
     urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "Available now RX-6900XT\n Buy here: https://www.amd.com/en/direct-buy/5458374200/it")
     urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "Available now RX-6800XT\n Buy here: https://www.amd.com/en/direct-buy/5458374100/it")
     urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6800\n Buy here: https://www.amd.com/en/direct-buy/5458374000/it")
-    urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6700XT\n Buy here: https://www.amd.com/en/direct-buy/5498471500/it")
+    urls.add("https://www.amd.com/en/direct-buy/5496921400/it", "Available now RX-6700XT\n Buy here: https://www.amd.com/en/direct-buy/5496921400/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "Available now RYZEN 9 5950X\n Buy here: https://www.amd.com/en/direct-buy/5450881400/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "Available now RYZEN 9 5900X\n Buy here: https://www.amd.com/en/direct-buy/5450881500/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "Available now RYZEN 7 5800X\n Buy here: https://www.amd.com/en/direct-buy/5450881600/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881700/it", "Available now RYZEN 5 5600X\n Buy here: https://www.amd.com/en/direct-buy/5450881700/it")
-    
-  
 
     updater = Updater(urls)
     updater.start()
@@ -106,7 +106,6 @@ if __name__ == "__main__":
                 update = True
                 print("Waiting for the updater...")
                 updater.join()
-                urls.check_availability()
                 availables = urls.get_availables()  # get all availables
                 if availables != cached_availables:
                     if len(availables) == 0:
