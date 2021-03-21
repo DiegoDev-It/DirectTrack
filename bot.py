@@ -9,21 +9,19 @@ def get_api_key() -> str:
     api_key = ""
     with open("api_key.txt", 'r') as file:
         api_key = file.readline()
-    
-    return api_key
-
+        
 def get_id() -> int:
     id = ""
     with open("telegram_id.txt", 'r') as file:
         id = file.readline()
     
     return int(id)
-
+    
+    return api_key
 # headers are used to fool AMD website
 headers = {"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"}
 button = "btn-shopping-cart"  # the shopping button
 bot = telepot.Bot(get_api_key())  # put your API key in a file called api_key.txt
-telegram_id = get_id()  # put your ID in a file called telegram_id.txt
 
 class URLS:
     def __init__(self):
@@ -72,12 +70,13 @@ if __name__ == "__main__":
     run = True
 
     urls = URLS()
-    urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "RX-6900XT")
-    urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "RX-6800XT")
-    urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "RX-6800")
-    urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "RYZEN 9 5950X")
-    urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "RYZEN 9 5900X")
-    urls.add("https://www.amd.com/en/direct-buy/5450881700/it", "RYZEN 5 5600X")
+    urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "Available now RX-6900XT\n Buy here: https://www.amd.com/en/direct-buy/5458374200/it")
+    urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "Available now RX-6800XT\n Buy here: https://www.amd.com/en/direct-buy/5458374100/it")
+    urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6800\n Buy here: https://www.amd.com/en/direct-buy/5458374000/it")
+    urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6700XT\n Buy here: https://www.amd.com/en/direct-buy/5498471500/it")
+    urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "Available now RYZEN 9 5950X\n Buy here: https://www.amd.com/en/direct-buy/5450881400/it")
+    urls.add("https://www.amd.com/en/direct-buy/5450881500/it", "Available now RYZEN 9 5900X\n Buy here: https://www.amd.com/en/direct-buy/5450881500/it")
+    urls.add("https://www.amd.com/en/direct-buy/5450881700/it", "Available now RYZEN 5 5600X\n Buy here: https://www.amd.com/en/direct-buy/5450881700/it")
 
     updater = Updater(urls)
     updater.start()
@@ -115,7 +114,7 @@ if __name__ == "__main__":
                             for i in range(len(availables)-1):
                                 availables_str = f"{availables_str}, {availables[i+1]}"
                             
-                        bot.sendMessage(telegram_id, availables_str)
+                        bot.sendMessage(telegram_id, availables_str)    
                 cached_availables = availables
         
-        sleep(5)
+        sleep(2)
