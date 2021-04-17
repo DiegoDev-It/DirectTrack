@@ -74,6 +74,7 @@ if __name__ == "__main__":
     urls = URLS()
     urls.add("https://www.amd.com/en/direct-buy/5458374200/it", "Available now RX-6900XT\n Buy now: https://www.amd.com/en/direct-buy/5458374200/it")
     urls.add("https://www.amd.com/en/direct-buy/5458374100/it", "Available now RX-6800XT\n Buy now: https://www.amd.com/en/direct-buy/5458374100/it")
+    urls.add("https://www.amd.com/en/direct-buy/5496921500/it", "Available now RX-6800XT Midnight\n Buy now: https://www.amd.com/en/direct-buy/5458374100/it")
     urls.add("https://www.amd.com/en/direct-buy/5458374000/it", "Available now RX-6800\n Buy now: https://www.amd.com/en/direct-buy/5458374000/it")
     urls.add("https://www.amd.com/en/direct-buy/5496921400/it", "Available now RX-6700XT\n Buy now: https://www.amd.com/en/direct-buy/5496921400/it")
     urls.add("https://www.amd.com/en/direct-buy/5450881400/it", "Available now RYZEN 9 5950X\n Buy now: https://www.amd.com/en/direct-buy/5450881400/it")
